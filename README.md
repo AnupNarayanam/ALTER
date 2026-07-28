@@ -32,7 +32,7 @@ yay -S bibata-cursor-theme     # AUR, if using an AUR helper
 ## Install
 
 ```bash
-git clone [<your-repo-url>](https://github.com/AnupNarayanam/ALTER/) alter
+git clone [https://github.com/AnupNarayanam/ALTER/](ALTER) alter
 cd alter
 chmod +x install.sh update.sh uninstall.sh
 ./install.sh
