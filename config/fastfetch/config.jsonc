@@ -1,0 +1,44 @@
+// ============================================================
+// FASTFETCH — SYSTEM INFO CARD
+// ============================================================
+// Runs on shell startup, a "signature moment" surface — the
+// closest thing this desktop has to a boot ID card. Uses the
+// label + value HUD pattern from reference 2 (BPM/RSP readouts):
+// muted label, bold value. Kept to genuinely useful info only,
+// no decorative filler modules.
+// ============================================================
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+
+    "logo": {
+        "type": "small",
+        "color": {
+            "1": "red"          // logo rendered in the accent color, not default distro colors
+        }
+    },
+
+    "display": {
+        "separator": "  ",
+        "color": {
+            "keys": "white",     // labels: white per ref 2's "label" role
+            "output": "red"      // values: red, glowing-digit role
+        }
+    },
+
+    "modules": [
+        "title",
+        "separator",
+        "os",
+        "kernel",
+        "uptime",
+        "packages",
+        "shell",
+        "wm",
+        "terminal",
+        "cpu",
+        "memory",
+        "disk",
+        "break",
+        "colors"
+    ]
+}

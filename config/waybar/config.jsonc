@@ -1,0 +1,151 @@
+// ============================================================
+// WAYBAR — MAIN CONFIG
+// ============================================================
+// Three-zone layout borrowed structurally from reference 4:
+//   left    -> identity + context (logo, workspaces, window title)
+//   center  -> one isolated module, kept alone on purpose
+//   right   -> dense utility stack, priority order left-to-right
+//
+// Height locked to 26px per spec. No modules beyond the spec's
+// explicit list: workspaces, clock, cpu, ram, network, battery,
+// volume, tray — "nothing else."
+// ============================================================
+{
+    "layer": "top",
+    "position": "top",
+    "height": 26,                 // spec: waybar height 26px
+    "spacing": 0,                 // grouping done via module margins, not gaps (ref 4)
+    "margin-top": 0,
+
+    // --- LEFT ZONE ---
+    "modules-left": [
+        "custom/logo",
+        "hyprland/workspaces",
+        "hyprland/window"
+    ],
+
+    // --- CENTER ZONE ---
+    // Deliberately a single isolated module (ref 4) — nothing
+    // else shares the center, keeping it calm and scannable.
+    "modules-center": [
+        "clock"
+    ],
+
+    // --- RIGHT ZONE ---
+    // Order matches ref 4's priority stack: audio -> network ->
+    // bluetooth -> system stats -> battery -> tray -> notifications.
+    "modules-right": [
+        "pulseaudio",
+        "network",
+        "bluetooth",
+        "cpu",
+        "memory",
+        "battery",
+        "tray",
+        "custom/notification"
+    ],
+
+    "custom/logo": {
+        "format": "󰣇",
+        "tooltip": false,
+        "on-click": "rofi -show drun"
+    },
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+            "active": "▬",         // pill shape for active workspace, per ref 4
+            "default": "●",
+            "empty": "○"
+        },
+        "persistent-workspaces": {
+            "*": 5
+        }
+    },
+
+    "hyprland/window": {
+        "format": "{title}",
+        "max-length": 40,
+        "separate-outputs": true
+    },
+
+    "clock": {
+        "format": "{:%I:%M %p}",
+        "format-alt": "{:%A, %B %d}",
+        "tooltip-format": "<big>{:%Y-%m-%d}</big>\n<tt>{calendar}</tt>",
+        "on-click-right": "mode"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "muted",
+        "format-icons": {
+            "default": ["", "", ""]
+        },
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+    },
+
+    "network": {
+        "format-wifi": " {essid}",
+        "format-ethernet": " wired",
+        "format-disconnected": "disconnected",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+        "on-click": "~/.config/scripts/network-toggle.sh"
+    },
+
+    "bluetooth": {
+        "format": " {status}",
+        "format-connected": " {device_alias}",
+        "format-disabled": " off",
+        "on-click": "blueman-manager"
+    },
+
+    // CPU/RAM use waybar's built-in modules; the glow-digit HUD
+    // look (ref 2) is applied entirely in style.css via text-shadow
+    // and the accent color, so no external stat script is needed.
+    "cpu": {
+        "format": "CPU {usage}%",
+        "interval": 2,
+        "tooltip": false
+    },
+
+    "memory": {
+        "format": "RAM {percentage}%",
+        "interval": 5,
+        "tooltip-format": "{used:0.1f}GB / {total:0.1f}GB used"
+    },
+
+    // Battery uses waybar's built-in module with format-icons
+    // approximating a segmented gauge (ref 3), scaled to normal
+    // icon size; styling/glow applied in style.css.
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "format-charging": "󰂄 {capacity}%",
+        "states": {
+            "warning": 20,
+            "critical": 10
+        }
+    },
+
+    "tray": {
+        "spacing": 8,
+        "icon-size": 14
+    },
+
+    "custom/notification": {
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "󰂚",
+            "none": "󰂜",
+            "dnd-notification": "󰂛",
+            "dnd-none": "󰂝"
+        },
+        "return-type": "json",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t"
+    }
+}

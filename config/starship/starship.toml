@@ -1,0 +1,54 @@
+# ============================================================
+# STARSHIP — PROMPT
+# ============================================================
+# Spec: "Minimal prompt. Current directory. Git branch. Exit
+# code. Nothing more." Every module not listed here is
+# explicitly disabled so an updated Starship version can't
+# silently add modules back in.
+# ============================================================
+
+format = """$directory$git_branch$character"""
+
+add_newline = false
+
+[directory]
+style = "bold fg:#FFFFFF"
+truncation_length = 3
+truncate_to_repo = true
+
+[git_branch]
+format = " [$symbol$branch](fg:#FF1F3D)"
+symbol = " "
+
+[character]
+success_symbol = "[❯](fg:#FFFFFF)"
+error_symbol = "[❯](fg:#FF1F3D)"     # exit code signal: red on failure, white on success
+
+# --- Explicitly disabled: keeps the prompt to directory/git/exit
+# code only, per spec, regardless of future Starship defaults ---
+[username]
+disabled = true
+
+[hostname]
+disabled = true
+
+[package]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[python]
+disabled = true
+
+[rust]
+disabled = true
+
+[docker_context]
+disabled = true
+
+[time]
+disabled = true
+
+[battery]
+disabled = true

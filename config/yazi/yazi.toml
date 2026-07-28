@@ -1,0 +1,24 @@
+# ============================================================
+# YAZI — FILE MANAGER
+# ============================================================
+# Terminal file manager, chosen over a GUI app to stay
+# consistent with the terminal-first workflow. Config kept to
+# behavior only — visual theme lives in theme.toml (generated
+# by install.sh from the master colors.conf).
+# ============================================================
+
+[manager]
+show_hidden = false
+sort_by = "natural"
+sort_dir_first = true
+linemode = "size"
+
+[preview]
+tab_size = 2
+max_width = 1200
+max_height = 900
+
+[opener]
+edit = [
+    { run = 'nvim "$@"', block = true },
+]

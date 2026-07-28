@@ -1,0 +1,88 @@
+/* ============================================================
+   SWAYNC — STYLE
+   ============================================================
+   Spec: dark, rounded, red border, minimal. Blur behind this
+   surface is enabled via the layerrule in decoration.conf —
+   this file only handles color/shape, not the blur itself.
+   ============================================================ */
+
+* {
+    font-family: "Inter";
+    font-size: 13px;
+}
+
+.notification-row {
+    background: transparent;
+}
+
+.notification {
+    background-color: #101010;      /* panel token */
+    border: 2px solid #B00020;       /* spec: red border */
+    border-radius: 8px;               /* spec: rounded, matches window rounding */
+    padding: 10px;
+    margin: 6px;
+}
+
+.notification-content {
+    color: #FFFFFF;
+}
+
+.notification .body {
+    color: #C7C7C7;                   /* text_secondary for body copy */
+}
+
+.notification .summary {
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
+.notification .time {
+    color: #8C8C8C;                   /* text_muted */
+}
+
+.close-button {
+    background: transparent;
+    color: #8C8C8C;
+    border-radius: 6px;
+}
+
+.close-button:hover {
+    background-color: #B00020;
+    color: #FFFFFF;
+}
+
+.control-center {
+    background-color: #090909;        /* background token */
+    border: 2px solid #2A2A2A;         /* inactive border token */
+    border-radius: 8px;
+}
+
+.widget-title {
+    color: #FFFFFF;
+    font-weight: 700;
+    padding: 8px;
+}
+
+.widget-title button {
+    background-color: #171717;         /* card token */
+    color: #C7C7C7;
+    border-radius: 6px;
+}
+
+.widget-title button:hover {
+    background-color: #B00020;
+    color: #FFFFFF;
+}
+
+.widget-dnd {
+    color: #C7C7C7;
+    padding: 8px;
+}
+
+/* Critical notifications: same inverted red treatment as the
+   waybar battery-critical state, for a consistent "urgent" signal
+   language across the whole desktop. */
+.notification.critical {
+    border-color: #FF1F3D;
+    background-color: #171717;
+}

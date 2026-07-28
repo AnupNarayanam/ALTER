@@ -1,0 +1,78 @@
+/* ============================================================
+   ROFI — THEME
+   ============================================================
+   Spec: "Black. White text. Red selection. Centered. Rounded.
+   Minimal." This is one of the three surfaces (with
+   notifications and lockscreen) where blur is allowed at all —
+   the layerrule enabling that lives in hypr/conf/decoration.conf.
+   ============================================================ */
+
+* {
+    background:       #090909;
+    background-alt:   #101010;
+    foreground:       #FFFFFF;
+    foreground-alt:   #C7C7C7;
+    accent:           #B00020;
+    accent-focused:   #FF1F3D;
+    border-color:     #2A2A2A;
+
+    font: "Inter 12";
+}
+
+window {
+    background-color: @background;
+    border:           2px;
+    border-color:     @border-color;
+    border-radius:    8px;      /* spec: 8px corner radius, consistent with window style */
+    width:            36%;
+    location:         center;    /* spec: centered */
+    anchor:           center;
+}
+
+mainbox {
+    background-color: transparent;
+    padding: 16px;
+    spacing: 12px;
+}
+
+inputbar {
+    background-color: @background-alt;
+    text-color:        @foreground;
+    border-radius:      6px;
+    padding:            10px 14px;
+    children:           [ "entry" ];
+}
+
+entry {
+    background-color: transparent;
+    text-color:         @foreground;
+    placeholder:         "Search…";
+    placeholder-color:   @foreground-alt;
+}
+
+listview {
+    background-color: transparent;
+    lines:              8;
+    spacing:             4px;
+    scrollbar:            false;   /* no visible scrollbar — keeps it clean/minimal */
+}
+
+element {
+    background-color: transparent;
+    text-color:         @foreground-alt;
+    padding:             8px 10px;
+    border-radius:        6px;
+}
+
+element selected {
+    background-color: @accent;     /* spec: red selection */
+    text-color:         @foreground;
+}
+
+element-icon {
+    size: 20px;
+}
+
+element-text {
+    vertical-align: 0.5;
+}

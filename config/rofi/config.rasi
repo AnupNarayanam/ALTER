@@ -1,0 +1,19 @@
+/* ============================================================
+   ROFI — CONFIG
+   ============================================================
+   Spec: launcher only, no icons clutter, centered, minimal.
+   Behavior config lives here; visual styling lives in theme.rasi
+   so a future re-skin doesn't require touching behavior.
+   ============================================================ */
+
+configuration {
+    modi:                       "drun,run,window";
+    show-icons:                 true;
+    icon-theme:                 "Papirus-Dark";
+    display-drun:               "Applications";
+    drun-display-format:        "{name}";
+    disable-history:            false;
+    sidebar-mode:                false;   /* no mode-switch sidebar — keeps it a pure search bar */
+}
+
+@theme "theme.rasi"
